@@ -6,13 +6,6 @@
 
 A console-based implementation of the deck-building card game **Dominion**, written in modern C++ as an academic project. This project focuses on applying Object-Oriented Programming principles to build a complete and playable game engine.
 
- 
-<!-- 
-  TODO: Replace the URL above with a real screenshot URL. 
-  You can upload an image to your GitHub repo or use a service like Imgur.
-  A good screenshot would be one showing a player's turn.
--->
-
 ## Table of Contents
 
 - [About The Project](#about-the-project)
@@ -67,8 +60,8 @@ You will need a C++ compiler that supports C++17. `g++` is recommended.
 
 1.  **Clone the repository:**
     ```sh
-    git clone https://github.com/[your-github-username]/[your-repo-name].git
-    cd [your-repo-name]
+    git clone https://github.com/nico916/dominion-cpp.git
+    cd dominion-cpp
     ```
 
 2.  **Compile the project:**
@@ -79,14 +72,16 @@ You will need a C++ compiler that supports C++17. `g++` is recommended.
     This command compiles all `.cpp` files in the `src` directory, includes the headers from the `include` directory, and creates an executable named `JeuCarte`.
 
 3.  **Run the game:**
-    ```sh
-    ./JeuCarte
-    ```
+    -   On Linux/macOS/Git Bash:
+        ```sh
+        ./JeuCarte
+        ```
+    -   On Windows: After compiling, you can also run the game by double-clicking on `JeuCarte.exe` inside the project folder.
 
 ## Usage
 
 Once the application is running, it will guide you through a series of prompts in the console:
-1.  **Load Game**: Choose to start a new game or resume from a saved `save.csv` file.
+1.  **Load Game**: Choose to start a new game or resume from a saved `sauvegarde.csv` file.
 2.  **Number of Players**: Select between 2 and 4 players.
 3.  **AI Player**: Decide if one of the players should be controlled by the AI.
 4.  **Card Selection**: Choose to play with the 10 standard Action cards or to manually select 10 cards for the game's supply.
@@ -98,13 +93,13 @@ During a turn, you will be prompted to take actions, buy cards, or end your turn
 ### Object-Oriented Design
 
 The project is heavily based on OOP principles to create a modular and extensible architecture.
--   **Inheritance & Polymorphism**: A base `Card` class defines a common interface. Derived classes like `CardTreasure`, `CardVictory`, and `CardAction` implement specific behaviors. This allows us to store all cards in a polymorphic collection (e.g., `std::vector<std::shared_ptr<Card>>`) and handle them uniformly.
--   **Encapsulation**: Classes like `Player` and `PlateauJeu` (GameBoard) encapsulate their own state and logic, exposing only necessary methods to interact with them.
+-   **Inheritance & Polymorphism**: A base `Card` class defines a common interface. Derived classes like `CarteTresor`, `CarteVictoire`, and `CarteAction` implement specific behaviors. This allows us to store all cards in a polymorphic collection (e.g., `std::vector<std::shared_ptr<Card>>`) and handle them uniformly.
+-   **Encapsulation**: Classes like `Joueur` and `PlateauJeu` (GameBoard) encapsulate their own state and logic, exposing only necessary methods to interact with them.
 
 ### Modern C++ & Memory Management
 
 To ensure robust and safe memory management, this project leverages modern C++ features:
--   **Smart Pointers**: `std::shared_ptr` is used extensively to manage the lifecycle of `Card` and `Player` objects. This completely avoids manual `new`/`delete` calls, prevents memory leaks, and handles shared ownership of cards between the game board, player decks, and hands. It also made safe down-casting with `std::dynamic_pointer_cast` straightforward.
+-   **Smart Pointers**: `std::shared_ptr` is used extensively to manage the lifecycle of `Card` and `Joueur` objects. This completely avoids manual `new`/`delete` calls, prevents memory leaks, and handles shared ownership of cards between the game board, player decks, and hands. It also made safe down-casting with `std::dynamic_pointer_cast` straightforward.
 
 ### Modular Structure
 
@@ -115,7 +110,7 @@ The codebase is organized to separate interfaces from implementations, a standar
 ## Challenges & Solutions
 
 -   **Challenge**: Managing different card types with unique actions in a uniform way.
-    -   **Solution**: Implemented a virtual `executeAction()` method in the `CardAction` class. Each specific action card (e.g., `Village`, `Smithy`) overrides this method to provide its unique logic.
+    -   **Solution**: Implemented specific `executerAction...` methods in the `CarteAction` class. A central game loop calls the correct method based on the card played, demonstrating a form of runtime polymorphism.
 
 -   **Challenge**: Correctly updating player state (deck, hand) without creating unintended copies.
     -   **Solution**: Using `std::shared_ptr<Joueur>` ensured that all parts of the program were referencing the exact same player object, not a copy, making state management consistent and reliable.
