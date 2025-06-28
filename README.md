@@ -67,16 +67,16 @@ You will need a C++ compiler that supports C++17. `g++` is recommended.
 2.  **Compile the project:**
     A `Makefile` is the recommended way. If one is not provided, you can compile manually using the command below from the root directory:
     ```sh
-    g++ -std=c++17 -I include/ -o JeuCarte main.cpp src/*.cpp
+    g++ -std=c++17 -I include/ -o Dominion main.cpp src/*.cpp
     ```
-    This command compiles all `.cpp` files in the `src` directory, includes the headers from the `include` directory, and creates an executable named `JeuCarte`.
+    This command compiles all `.cpp` files in the `src` directory, includes the headers from the `include` directory, and creates an executable named `Dominion`.
 
 3.  **Run the game:**
     -   On Linux/macOS/Git Bash:
         ```sh
-        ./JeuCarte
+        ./Dominion
         ```
-    -   On Windows: After compiling, you can also run the game by double-clicking on `JeuCarte.exe` inside the project folder.
+    -   On Windows: After compiling, you can also run the game by double-clicking on `Dominion.exe` inside the project folder.
 
 ## Usage
 
