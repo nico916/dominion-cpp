@@ -123,8 +123,3 @@ The codebase is organized to separate interfaces from implementations, a standar
 ## License
 
 Distributed under the MIT License. See `LICENSE` file for more information.
-
-## Acknowledgments
-
--   Co-author: Melvyn Provenzano
--   Project for the "Programming Tools and C++" course at Polytech Paris-Saclay.
